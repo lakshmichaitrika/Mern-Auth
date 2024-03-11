@@ -15,7 +15,7 @@ export const signup=async (req,res,next)=>{
     }
     catch(e){
         console.log(e)
-       next(error)
+       next({message:"something went wrong"})
 
     }
     

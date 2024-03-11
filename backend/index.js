@@ -4,9 +4,11 @@ import mongoose from 'mongoose'
 import dotenv from "dotenv";
 
 
+
 import userRoutes from './routes/user.route.js'
 import userSignup from "./routes/auth.route.js"
 
+import cors from 'cors'
 
 dotenv.config();
 mongoose.connect(process.env.MONGO)
@@ -19,6 +21,7 @@ console.log("connected to mongoDB")
 })
 const app=express()
 app.use(express.json());
+app.use(cors())
 const port=3000
 app.listen(port,()=>{
     console.log(`server is running at port ${port}`)
@@ -27,8 +30,7 @@ app.listen(port,()=>{
 
 
 app.use("/api/user",userRoutes)
-console.log(userSignup)
-app.use("/api/signup",userSignup)
+app.use("/api/auth",userSignup)
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode||500;
     const message=err.message||"Internal Error"
