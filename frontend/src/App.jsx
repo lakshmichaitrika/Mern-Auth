@@ -4,8 +4,8 @@ import Home from "./Pages/Home"
 import About from "./Pages/About"
 import Login from "./Pages/Login"
 import SignIn from "./Pages/SignIn"
-import SignOut from "./Pages/SignOut"
 import Header from "./Components/Header"
+import SignUp from "./Pages/SignUp"
 
 export default function App() {
   return (
@@ -16,7 +16,7 @@ export default function App() {
     <Route path="/about" element={<About/>} />
     <Route path="/login" element={<Login/>} />
     <Route path="/signin" element={<SignIn/>} />
-    <Route path="/signout" element={<SignOut/>} />
+    <Route path="/signUp" element={<SignUp/>} />
    </Routes>
    </BrowserRouter>
   )
