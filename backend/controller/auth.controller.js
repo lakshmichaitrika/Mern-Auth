@@ -12,7 +12,7 @@ export const signup=async (req,res,next)=>{
         await newUser.save()
 
 
-        res.status(201).json({message:"user Created successfully"})
+        res.status(201).json({message:"User Created successfully"})
     }
     catch(e){
         console.log(e)
@@ -35,7 +35,8 @@ export const signin=async (req,res,next)=>{
 
         const {password:hashedPassword,...rest}=validUser._doc
         console.log(hashedPassword)
-        res.cookie('token',token,{httpOnly:true,expires:new Date(Date.now()+360000)})
+        res
+        .cookie('token',token,{httpOnly:true,expires:new Date(Date.now()+3600000)})
         .status(200)
         .json(rest)
           }

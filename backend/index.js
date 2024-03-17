@@ -21,8 +21,8 @@ console.log("connected to mongoDB")
 })
 const app=express()
 app.use(express.json());
-app.use(cors())
-const port=3000
+
+const port=1000
 app.listen(port,()=>{
     console.log(`server is running at port ${port}`)
 })

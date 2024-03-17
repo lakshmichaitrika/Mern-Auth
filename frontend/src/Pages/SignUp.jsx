@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 export default function SignUp() {
  const [formData,setForm]=useState({})
  const [error,setError]=useState("") 
  const [loading,loadingState]=useState(false) 
+ let navigate=useNavigate();
 
   const handleChange=(e)=>{
     setForm({...formData,[e.target.id]:e.target.value})
@@ -13,7 +14,7 @@ export default function SignUp() {
   const handleSubmit=async(e)=>{
     e.preventDefault();
     loadingState(true)
-    const res=await fetch("http://localhost:3000/api/auth/signup",
+    const res=await fetch("/api/auth/signup",
     {
       method:'POST',
       headers:{
@@ -25,12 +26,22 @@ export default function SignUp() {
     )
     loadingState(false)
     const data=await res.json();
-    console.log(data.message)
+    console.log(res)
+    if (data.success===false){
+      console.log(data.message)
      setError(data.message)
+     
+     
+    }
+    else{
+      navigate('/signin')  
+    
+    }
+    
     
   }
 
-  console.log(formData)
+  // console.log(formData)
   return (
     <div className="max-w-lg mx-auto p-5">
       <h1 className="text-3xl text-center font-semibold my-6">Sign Up</h1>
